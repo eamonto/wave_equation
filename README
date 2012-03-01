@@ -1,0 +1,118 @@
+! ===========================================================================
+! README
+! ===========================================================================
+! This program solves the wave equation in 1+1 dimensions.
+
+!     Copyright (C) 2012  Edison Montoya, eamonto@gmail.com
+
+!     This program is free software: you can redistribute it and/or modify
+!     it under the terms of the GNU General Public License as published by
+!     the Free Software Foundation, either version 3 of the License, or
+!     (at your option) any later version.
+
+!     This program is distributed in the hope that it will be useful,
+!     but WITHOUT ANY WARRANTY; without even the implied warranty of
+!     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+!     GNU General Public License for more details.
+
+!     You should have received a copy of the GNU General Public License
+!     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+! Up to date: 29 Feb 2012					
+
+
+To compile the program execute in the terminal:
+
+$make
+
+
+To run the program execute:
+
+$make run
+
+
+All the outputs are written into the directory "outputfile" given in the 
+parameters module (param.f90).
+
+
+The files into this repository are:
+
+! ===========================================================================
+! main.f90
+! ===========================================================================
+! Principal program, this program solves the wave equation in 1+1 dimensions.
+
+
+! ===========================================================================
+! param.f90
+! ===========================================================================
+! Global parameters for the physical system.
+
+
+! ===========================================================================
+! initial_data.f90
+! ===========================================================================
+! Here are initialize all the functions defined on the grid.
+
+
+! ===========================================================================
+! boundaries.f90
+! ===========================================================================
+! Implementation of the boundaries conditions
+
+
+! ===========================================================================
+! sources.f90
+! ===========================================================================
+! Here are implemented the right hand side (derivatives) of the functions
+! to be evolve in time.
+
+
+! ===========================================================================
+! mylibrary.f90
+! ===========================================================================
+! Library to evolve an arbitry physical system on a 1 dimensional grid using 
+! a Runge-Kutta 4 method. Also includes memory allocation and output routines.
+
+ The structures used in the library are:
+
+  !Functions on the grid to be integrated
+  type :: dynamical_func
+
+  !Extra functions that are not evolve
+  type :: extra_func
+
+
+ The routines in the library are:
+
+  !Implemetation of the Runge-Kutta 4 method 
+  subroutine evolution_rk4(k,func,time_step)
+
+  !Store the initial values before the integration
+  subroutine store_levels_rk4(func)
+
+  !Allocation of function that are evolve
+  subroutine allocate_dyn(func,grid_points)
+
+  !Allocation of the function that are not evolve
+  subroutine allocate_extra(func,grid_points)
+
+  !Deallocation of function that are evolve
+  subroutine deallocate_dyn(func)
+
+  !Allocation of function that are not evolve
+  subroutine deallocate_extra(func)
+
+  !Created the output file for the dynamical functions "func" in  
+  !the "output_dir" with name "output_file" and id "file_number"
+  subroutine create_output(func,output_dir,output_file,file_number)
+
+  !Print the output of two scalar functions on the grid
+  subroutine output_obs_obs(axis1,axis2,output_file,file_number,Nx)
+
+
+
+
+
+
+
